@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjetas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Lobster&family=Monoton&family=Poppins:wght@300&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&family=Anton&family=Lobster&family=Monoton&family=Poppins:wght@300&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/cardStyles.css">
+    <link rel="shortcut icon" href="./assets/favicon-16x16.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- LOADER -->
+        <div class="newtons-cradle">
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+        </div>
+
+
+        <!-- HEADER -->
+        <header class="d-flex flex-column justify-content-center align-items-center">
+            <nav class="navbar navbar-expand-lg navbar-light w-100">
+                <div class="container-fluid d-flex justify-content-end">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavHeader" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavHeader">
+                        <ul class="navbar-nav gap-3 text-end">
+                            <li class="nav-item text-capitalize" data-aos="flip-right" data-aos-delay="300">Usuario:
+                                {{loadData.firstName}} {{loadData.lastName}}</li>
+                            <li class="nav-item" data-aos="flip-right" data-aos-delay="300">
+                                Mail de contacto: <a href="mailto:{{loadData.emailClient}}">{{loadData.emailClient}}</a>
+                            </li>
+                            <li class="nav-item" data-aos="flip-right" data-aos-delay="300"> Fecha:
+                                {{new Date().toLocaleString().slice(0,9)}}</li>
+                            <li class="nav-item" data-aos="flip-right" data-aos-delay="300"> Hora:
+                                {{new Date().toLocaleString().slice(10,16)}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <h1>
+                BVT
+            </h1>
+        </header>
+
+
+        <!-- BARRA DE NAVEGACIÓN -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page" href="./accounts.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page" href="#">Tarjetas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page"
+                                href="./transfers.html">Transferencias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page"
+                                href="./loan-application.html">Préstamos</a>
+                        </li>
+                        <a class="nav-link text-light text-capitalize" href=""> <span id="icono-usuario"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="#e6e6e6" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="arcs">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg></span> {{loadData.firstName}}</a>
+                    </ul>
+                </div>
+                <label class="switch" @click="changeColor">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+                <button type="button" @click="logIn" class="logOut text-capitalize">Salir <svg
+                        xmlns="http://www.w3.org/2000/svg" id="icon-salir" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                        <line x1="12" y1="2" x2="12" y2="12"></line>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+
+        <!-- MENU PRINCIPAL -->
+        <main>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 mb-2">
+                        <!-- CARD CREDIT-CARDS -->
+                        <div class="p-3 d-flex flex-column justify-content-center align-items-center gap-5"
+                            data-aos="zoom-out" v-if="cards.length > 0">
+                            <div>
+                                <h2 class="display-4 text-center">
+                                    Tarjetas
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div
+                        class="col-xs-12 d-flex flex-column justify-content-start align-items-center gap-5 flex-wrap mb-2">
+                        <div class="card-titulo card-1 p-2 d-flex justify-content-center align-items-center"
+                            data-aos="zoom-out">
+                            <h2 class="h-6 msj-bienvenida">
+                                Tarjetas de débito
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row tarjetas-alto">
+                    <div class="col-xs-12 d-flex justify-content-around align-items-center gap-5 p-2 flex-wrap mb-5">
+                        <div class="mt-3 d-flex flex-column gap-3 justify-content-center align-items-center"
+                            v-for="card in debit">
+                            <div class="card">
+                                <div class="flip">
+                                    <div class="front">
+                                        <div class="strip-bottom"
+                                            :class="{'cardDorada': card.color == 'GOLD', 'cardTitanio': card.color == 'TITANIUM', 'cardSilver': card.color == 'SILVER'}">
+                                        </div>
+                                        <div class="strip-top"
+                                            :class="{'cardDorada': card.color == 'GOLD', 'cardTitanio': card.color == 'TITANIUM', 'cardSilver': card.color == 'SILVER'}">
+                                        </div>
+                                        <svg class="logo" width="40" height="40" viewbox="0 0 17.5 16.2">
+                                            <path
+                                                d="M3.2 0l5.4 5.6L14.3 0l3.2 3v9L13 16.2V7.8l-4.4 4.1L4.5 8v8.2L0 12V3l3.2-3z"
+                                                fill="white"></path>
+                                        </svg>
+                                        <div class="investor" v-if="!isCardExpired(card.thruDate)">{{card.type}} card</div>
+                                        <div class="investor" v-else>{{card.type}} card - <span class="text-danger">Vencida</span></div>
+                                        <div class="chip">
+                                            <div class="chip-line"></div>
+                                            <div class="chip-line"></div>
+                                            <div class="chip-line"></div>
+                                            <div class="chip-line"></div>
+                                            <div class="chip-main"></div>
+                                        </div>
+                                        <svg class="wave" viewBox="0 3.71 26.959 38.787" width="26.959" height="38.787"
+                                            fill="white">
+                                            <path
+                                                d="M19.709 3.719c.266.043.5.187.656.406 4.125 5.207 6.594 11.781 6.594 18.938 0 7.156-2.469 13.73-6.594 18.937-.195.336-.57.531-.957.492a.9946.9946 0 0 1-.851-.66c-.129-.367-.035-.777.246-1.051 3.855-4.867 6.156-11.023 6.156-17.718 0-6.696-2.301-12.852-6.156-17.719-.262-.317-.301-.762-.102-1.121.204-.36.602-.559 1.008-.504z">
+                                            </path>
+                                            <path
+                                                d="M13.74 7.563c.231.039.442.164.594.343 3.508 4.059 5.625 9.371 5.625 15.157 0 5.785-2.113 11.097-5.625 15.156-.363.422-1 .472-1.422.109-.422-.363-.472-1-.109-1.422 3.211-3.711 5.156-8.551 5.156-13.843 0-5.293-1.949-10.133-5.156-13.844-.27-.309-.324-.75-.141-1.114.188-.367.578-.582.985-.542h.093z">
+                                            </path>
+                                            <path
+                                                d="M7.584 11.438c.227.031.438.144.594.312 2.953 2.863 4.781 6.875 4.781 11.313 0 4.433-1.828 8.449-4.781 11.312-.398.387-1.035.383-1.422-.016-.387-.398-.383-1.035.016-1.421 2.582-2.504 4.187-5.993 4.187-9.875 0-3.883-1.605-7.372-4.187-9.875-.321-.282-.426-.739-.266-1.133.164-.395.559-.641.984-.617h.094zM1.178 15.531c.121.02.238.063.344.125 2.633 1.414 4.437 4.215 4.437 7.407 0 3.195-1.797 5.996-4.437 7.406-.492.258-1.102.07-1.36-.422-.257-.492-.07-1.102.422-1.359 2.012-1.075 3.375-3.176 3.375-5.625 0-2.446-1.371-4.551-3.375-5.625-.441-.204-.676-.692-.551-1.165.122-.468.567-.785 1.051-.742h.094z">
+                                            </path>
+                                        </svg>
+                                        <div class="card-number">
+                                            <div class="section">{{card.number.substring(0,4)}}</div>
+                                            <div class="section">{{card.number.substring(5,9)}}</div>
+                                            <div class="section">{{card.number.substring(10,14)}}</div>
+                                            <div class="section">{{card.number.substring(15,19)}}</div>
+                                        </div>
+                                        <div class="end"><span class="end-text">Desde:</span><span class="end-date">
+                                                {{card.fromDate.substring(5,7) + "/" + card.fromDate.substring(2,4)}}</span><span
+                                                class="end-text">Hasta:</span><span class="end-date">
+                                                {{card.thruDate.substring(5,7) + "/" + card.thruDate.substring(2,4)}}</span>
+                                        </div>
+                                        <div class="card-holder">{{card.cardHolder}}</div>
+                                        <div class="master">
+                                            <div class="circle master-red"></div>
+                                            <div class="circle master-yellow"></div>
+                                        </div>
+                                    </div>
+                                    <div class="back">
+                                        <div class="strip-black"></div>
+                                        <div class="ccv">
+                                            <label>ccv</label>
+                                            <div>{{card.cvv}}</div>
+                                        </div>
+                                        <div class="terms">
+                                            <p>Esta tarjeta es propiedad de BVT. El mal uso es ofensa criminal.
+                                                Si la encuentra, devuélvala a BVT o al banco más cercano con el logotipo
+                                                de MasterCard.</p>
+                                            <p>El uso de esta tarjeta está sujeto al acuerdo de la tarjeta de crédito
+                                                y/o débito.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-danger" v-if="card.enabled"
+                                @click="disabledCard(card.id)">Desactivar</button>
+                            <div class="text-center display-6 mb-1 d-flex align-items-center gap-3 ps-1"
+                                v-else-if="!card.enabled">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="svg-alert" width="35" height="35"
+                                    viewBox="0 0 24 24" fill="none" stroke="#F24455" stroke-width="2"
+                                    stroke-linecap="square" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                </svg>
+                                <p class="mb-0">Tarjeta inactiva</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div
+                        class="col-xs-12 d-flex flex-column justify-content-start align-items-center flex-wrap mb-2 gap-5">
+                        <div class="card-titulo card-1 p-2 d-flex justify-content-center align-items-center"
+                            data-aos="zoom-out">
+                            <h2 class="h-6 msj-bienvenida">
+                                Tarjetas de crédito
+                            </h2>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row tarjetas-alto">
+                    <div class="col-xs-12 d-flex justify-content-around align-items-center gap-5 p-2 flex-wrap mb-2">
+                        <div class="mt-3 d-flex flex-column gap-3 justify-content-center align-items-center"
+                            v-for="card in credit">
+                            <div class="card">
+                                <div class="flip">
+                                    <div class="front">
+                                        <div class="strip-bottom"
+                                            :class="{'cardDorada': card.color == 'GOLD', 'cardTitanio': card.color == 'TITANIUM', 'cardSilver': card.color == 'SILVER'}">
+                                        </div>
+                                        <div class="strip-top"
+                                            :class="{'cardDorada': card.color == 'GOLD', 'cardTitanio': card.color == 'TITANIUM', 'cardSilver': card.color == 'SILVER'}">
+                                        </div>
+                                        <svg class="logo" width="40" height="40" viewbox="0 0 17.5 16.2">
+                                            <path
+                                                d="M3.2 0l5.4 5.6L14.3 0l3.2 3v9L13 16.2V7.8l-4.4 4.1L4.5 8v8.2L0 12V3l3.2-3z"
+                                                fill="white"></path>
+                                        </svg>
+                                        <div class="investor" v-if="!isCardExpired(card.thruDate)">{{card.type}} card</div>
+                                        <div class="investor" v-else>{{card.type}} card - <span class="text-danger">Vencida</span></div>
+                                        <div class="chip">
+                                            <div class="chip-line"></div>
+                                            <div class="chip-line"></div>
+                                            <div class="chip-line"></div>
+                                            <div class="chip-line"></div>
+                                            <div class="chip-main"></div>
+                                        </div>
+                                        <svg class="wave" viewBox="0 3.71 26.959 38.787" width="26.959" height="38.787"
+                                            fill="white">
+                                            <path
+                                                d="M19.709 3.719c.266.043.5.187.656.406 4.125 5.207 6.594 11.781 6.594 18.938 0 7.156-2.469 13.73-6.594 18.937-.195.336-.57.531-.957.492a.9946.9946 0 0 1-.851-.66c-.129-.367-.035-.777.246-1.051 3.855-4.867 6.156-11.023 6.156-17.718 0-6.696-2.301-12.852-6.156-17.719-.262-.317-.301-.762-.102-1.121.204-.36.602-.559 1.008-.504z">
+                                            </path>
+                                            <path
+                                                d="M13.74 7.563c.231.039.442.164.594.343 3.508 4.059 5.625 9.371 5.625 15.157 0 5.785-2.113 11.097-5.625 15.156-.363.422-1 .472-1.422.109-.422-.363-.472-1-.109-1.422 3.211-3.711 5.156-8.551 5.156-13.843 0-5.293-1.949-10.133-5.156-13.844-.27-.309-.324-.75-.141-1.114.188-.367.578-.582.985-.542h.093z">
+                                            </path>
+                                            <path
+                                                d="M7.584 11.438c.227.031.438.144.594.312 2.953 2.863 4.781 6.875 4.781 11.313 0 4.433-1.828 8.449-4.781 11.312-.398.387-1.035.383-1.422-.016-.387-.398-.383-1.035.016-1.421 2.582-2.504 4.187-5.993 4.187-9.875 0-3.883-1.605-7.372-4.187-9.875-.321-.282-.426-.739-.266-1.133.164-.395.559-.641.984-.617h.094zM1.178 15.531c.121.02.238.063.344.125 2.633 1.414 4.437 4.215 4.437 7.407 0 3.195-1.797 5.996-4.437 7.406-.492.258-1.102.07-1.36-.422-.257-.492-.07-1.102.422-1.359 2.012-1.075 3.375-3.176 3.375-5.625 0-2.446-1.371-4.551-3.375-5.625-.441-.204-.676-.692-.551-1.165.122-.468.567-.785 1.051-.742h.094z">
+                                            </path>
+                                        </svg>
+                                        <div class="card-number">
+                                            <div class="section">{{card.number.substring(0,4)}}</div>
+                                            <div class="section">{{card.number.substring(5,9)}}</div>
+                                            <div class="section">{{card.number.substring(10,14)}}</div>
+                                            <div class="section">{{card.number.substring(15,19)}}</div>
+                                        </div>
+                                        <div class="end"><span class="end-text">Desde:</span><span class="end-date">
+                                                {{card.fromDate.substring(5,7) + "/" + card.fromDate.substring(2,4)}}</span><span
+                                                class="end-text">Hasta:</span><span class="end-date">
+                                                {{card.thruDate.substring(5,7) + "/" + card.thruDate.substring(2,4)}}</span>
+                                        </div>
+                                        <div class="card-holder">{{card.cardHolder}}</div>
+                                        <div class="master">
+                                            <div class="circle master-red"></div>
+                                            <div class="circle master-yellow"></div>
+                                        </div>
+                                    </div>
+                                    <div class="back">
+                                        <div class="strip-black"></div>
+                                        <div class="ccv">
+                                            <label>ccv</label>
+                                            <div>{{card.cvv}}</div>
+                                        </div>
+                                        <div class="terms">
+                                            <p>Esta tarjeta es propiedad de BVT. El mal uso es ofensa criminal.
+                                                Si lo encuentra, devuélvalo a BVT o al banco más cercano con el logotipo
+                                                de MasterCard.</p>
+                                            <p>El uso de esta tarjeta está sujeto al acuerdo de la tarjeta de crédito
+                                                y/o débito.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-danger" v-if="card.enabled"
+                                @click="disabledCard(card.id)">Desacivar</button>
+                            <div class="text-center display-6 mb-1 d-flex align-items-center gap-3 ps-1"
+                                v-else-if="!card.enabled">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="svg-alert" width="35" height="35"
+                                    viewBox="0 0 24 24" fill="none" stroke="#F24455" stroke-width="2"
+                                    stroke-linecap="square" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                </svg>
+                                <p class="mb-0">Tarjeta inactiva</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Solicitud de Tarjeta</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1"
+                                        :value="loadData.firstName" required readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Apellido:</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1"
+                                        :value="loadData.lastName" required readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Dirección de
+                                        facturación:</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email:</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" :value="loadData.emailClient" required readonly>
+                                </div>
+
+                                <div class="mb-3">
+                                    <select class="form-select" aria-label="Default select example" v-model="cardType">
+                                        <option selected value="">Seleccione tipo</option>
+                                        <option v-if="credit.length >= 3" disabled>Crédito</option>
+                                        <option v-else="" value="CREDIT">Crédito</option>
+                                        <option v-if="debit.length >= 3" disabled>Débito</option>
+                                        <option v-else="" value="DEBIT">Débito</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="form-select" aria-label="Default select example" v-model="cardColor">
+                                        <option selected value="">Modelo tarjeta</option>
+                                        <option value="GOLD">Gold</option>
+                                        <option value="SILVER">Silver</option>
+                                        <option value="TITANIUM">Titanium</option>
+                                    </select>
+                                </div>
+                                <p v-if="cardType === 'CREDIT' && cardColor === 'GOLD'">
+                                    Límite tarjeta: $40.000
+                                </p>
+                                <p v-else-if="cardType === 'CREDIT' && cardColor === 'SILVER'">
+                                    Límite tarjeta: $60.000
+                                </p>
+                                <p v-else-if="cardType === 'CREDIT' && cardColor === 'TITANIUM'">
+                                    Límite tarjeta: $100.000
+                                </p>
+                                <p>
+                                    Máximo de 3 tipos de tarjeta por cliente.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary"
+                                    @click.once="createCards">Solicitar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- divider -->
+                <div class="dropdown-divider"></div>
+
+                <!-- buttons -->
+                <div class="row pb-3 pt-2">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center pt-1 pb-1">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            Solicitar Tarjeta
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-center align-items-center pb-1">
+                        <button type="button" class="btn btn-primary" @click="toCreateCards">
+                            Ir a crear tarjetas
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn btn-primary btn-block" @click="toHome">Ir a
+                            Inicio</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="d-flex justify-content-between align-items-center w-100">
+        <div class="container-fluid">
+            <div class="row list-box">
+                <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center">
+                    <ul>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0">Sobre nosotros
+                        </li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0">Preguntas
+                            frequentes
+                        </li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0">Políticas de
+                            privacidad
+                        </li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0">Términos y
+                            condiciones
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center">
+                    <ul>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0"><img id="facebook" src="./assets/facebook.svg"
+                                alt="facebook logo">Facebook</li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0"><img id="twitter" src="./assets/twitter.svg" alt="twitter logo">Twitter
+                        </li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0"><img id="instagram" src="./assets/instagram.svg"
+                                alt="instagram logo">Instagram</li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0"><img id="youtube" src="./assets/youtube.svg" alt="youtube logo">Youtube
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-xs-12 d-flex flex-column justify-content-center align-items-center">
+                    <h2 class="siglas-footer p-2" data-aos="zoom-out">
+                        BVT
+                    </h2>
+                    <span>&#169 Copyright BVT - 2022</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+
+
+
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./scripts/accounts.js"></script>
+</body>
+
+</html>

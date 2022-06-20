@@ -1,0 +1,43 @@
+.nav-link.active{
+
+    background-color: #1266f1 !important;
+    
+}
+
+.nav-link {
+    background-color: #bababad9 !important;
+}
+
+.hidden {
+
+    display: none;
+}
+
+header{
+
+    min-height: 20vh !important;
+}
+
+main{
+
+    min-height: 60vh !important;
+}
+
+.form-check-input[type=checkbox]{
+    min-width: 1rem !important;
+}
+
+
+/* ===============================MEDIA QUERIES=============================== */
+
+
+@media only screen and (max-width: 550px) {
+
+    #tab-login{
+        width: 93% !important;
+    }
+    
+    #tab-register{
+        width: 83% !important;
+    }
+}

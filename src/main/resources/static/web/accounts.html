@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tus cuentas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Lobster&family=Monoton&family=Poppins:wght@300&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&family=Anton&family=Lobster&family=Monoton&family=Poppins:wght@300&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="shortcut icon" href="./assets/favicon-16x16.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- LOADER -->
+        <div class="newtons-cradle">
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+        </div>
+
+        <!-- HEADER -->
+        <header class="d-flex flex-column justify-content-center align-items-center">
+            <nav class="navbar navbar-expand-lg navbar-light w-100">
+                <div class="container-fluid d-flex justify-content-end">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavHeader" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavHeader">
+                        <ul class="navbar-nav gap-3 text-end">
+                            <li class="nav-item text-capitalize" data-aos="flip-right" data-aos-delay="300">Usuario:
+                                {{loadData.firstName}} {{loadData.lastName}}</li>
+                            <li class="nav-item" data-aos="flip-right" data-aos-delay="300">
+                                Mail de contacto: <a href="mailto:{{loadData.emailClient}}">{{loadData.emailClient}}</a>
+                            </li>
+                            <li class="nav-item" data-aos="flip-right" data-aos-delay="300"> Fecha:
+                                {{new Date().toLocaleString().slice(0,9)}}</li>
+                            <li class="nav-item" data-aos="flip-right" data-aos-delay="300"> Hora:
+                                {{new Date().toLocaleString().slice(10,16)}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <h1>
+                BVT
+            </h1>
+        </header>
+
+
+        <!-- BARRA DE NAVEGACIÓN -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page" href="./cards.html">Tarjetas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page"
+                                href="./transfers.html">Transferencias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page"
+                                href="./loan-application.html">Préstamos</a>
+                        </li>
+                        <a class="nav-link text-light text-capitalize" href=""> <span id="icono-usuario"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="#e6e6e6" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="arcs">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg></span> {{loadData.firstName}}</a>
+                    </ul>
+                </div>
+                <label class="switch" @click="changeColor">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+                <button type="button" @click="logIn" class="logOut text-capitalize">Salir <svg
+                        xmlns="http://www.w3.org/2000/svg" id="icon-salir" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                        <line x1="12" y1="2" x2="12" y2="12"></line>
+                    </svg></button>
+            </div>
+        </nav>
+
+        <!-- 1RA FILA -->
+        <!-- CUERPO DE INFORMACIÓN -->
+        <main class="p-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+
+                        <!-- CARD BIENVENIDA -->
+                        <div class="card card-1 p-2 d-flex justify-content-center align-items-center"
+                            data-aos="zoom-out">
+                            <h2 class="h-6 msj-bienvenida">
+                                Bienvenido/a: <span class="text-capitalize">{{loadData.firstName}} {{loadData.lastName}}
+                                </span>
+                            </h2>
+                            <h2 class="h-6 msj-bienvenida">
+                                ¡Tu resumen de Homebanking!:
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2DA FILA -->
+
+                <div class="row">
+                    <div class="col-xs-12 col-xl-4 mt-3" v-for="cuenta in accounts">
+                        <div class="card card-2 p-4 d-flex justify-content-center align-items-center card-cuentas">
+                            <div v-if="cuenta.type == 'AHORRO'">
+                                <h2> Cuenta de Ahorro </h2>
+                                <div class="display-6 text-center">
+                                    {{cuenta.name.substring(0,3) + " " + cuenta.name.substring(4,14)}}
+                                </div>
+                            </div>
+                            <div v-else-if="cuenta.type == 'CORRIENTE'">
+                                <h2 class="text-center"> Cuenta Corriente</h2>
+                                <div class="display-6 text-center">
+                                    {{cuenta.name.substring(0,3) + " " + cuenta.name.substring(4,14)}}
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="display-6 text-center">
+                                    Saldo &#36 {{cuenta.balance}}
+                                </div>
+                            </div>
+                            <div>
+                                <div class="display-6 text-center"
+                                    :class="{'text-success': cuenta.enabled, 'text-danger': !cuenta.enabled}">
+                                    {{cuenta.enabled ? "Cuenta Activa" : "Cuenta Inactiva"}}
+                                </div>
+                            </div>
+                            <div class="d-flex mt-2 gap-2" v-if="cuenta.enabled">
+                                <a v-bind:href="urlMov + cuenta.id"> <button class="fw-bold"
+                                        :class="{'boton-cuentas': cuenta.enabled, 'boton-disabled' : !cuenta.enabled}"
+                                        :disabled="!cuenta.enabled">Transacciones</button></a>
+                                <button class="fw-bold"
+                                    :class="{'boton-cuentas': cuenta.enabled, 'boton-disabled' : !cuenta.enabled}"
+                                    type="button" @click="disabledAccount(cuenta.id)"
+                                    :disabled="!cuenta.enabled">Desactivar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-xl-4 mt-3">
+                        <div class="card card-2 p-4 d-flex justify-content-center align-items-center agregar-cuentas"
+                            v-if="accounts.length < 3" data-aos="zoom-out">
+                            <div class="display-6">Agregar Cuentas</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop" id="agregarCuentaSVG" width="75" height="75"
+                                viewBox="0 0 24 24" fill="none" stroke="#0d6efd" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                            <div class="display-6">Cuentas disponibles: {{3 - accounts.length}}</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- 3RA FILA -->
+                <div class="row">
+                    <div class="col-xs-12 col-xl-4 mt-3">
+
+                        <!-- CARD PRÉSTAMOS -->
+                        <div class="card card-3 p-2 d-flex justify-content-center align-items-center"
+                            data-aos="zoom-out" v-if="loans.length > 0">
+                            <div class="mb-3">
+                                <h2 class="h-6 text-center">
+                                    Préstamos Adquiridos
+                                </h2>
+                            </div>
+                            <div class="d-flex w-100 justify-content-center align-items-center gap-3">
+                                <div class="form-check d-flex gap-1" v-on:change="filterByMajorMinor">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios1" value="all" v-model="worthAmount" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Todos
+                                    </label>
+                                </div>
+                                <div class="form-check d-flex gap-1">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios3" value="mayor" v-model="worthAmount">
+                                    <label class="form-check-label" for="exampleRadios3">
+                                        Mayor monto
+                                    </label>
+                                </div>
+                                <div class="form-check d-flex gap-2">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios2" value="menor" v-model="worthAmount">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Menor monto
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="w-75 d-flex justify-content-center align-items-center">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>TNA</th>
+                                            <th class="text-center">Cuotas</th>
+                                            <th class="text-center">Monto</th>
+                                            <th class="text-center">Monto cuotas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="loan in loans" class="fila-tabla-dolar"
+                                            :class="{'text-success': loan.name == 'HIPOTECARIO', 'text-danger': loan.name == 'PERSONAL', 'text-primary': loan.name == 'AUTOMOTRIZ'}">
+                                            <td>{{loan.name}}</td>
+                                            <td>{{loan.name == 'HIPOTECARIO' ? '20,00%' : loan.name == 'PERSONAL' ? '10,00%' : '15,00%' }}
+                                            </td>
+                                            <td class="text-center">{{loan.payments}}</td>
+                                            <td class="text-center">&#36 {{loan.amount.toFixed(2)}}</td>
+                                            <td class="text-center"> &#36
+                                                {{(loan.amount / loan.payments).toFixed(2)}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button type="button" class="btn btn-primary" @click="toLoans" v-if="loans.length < 3">
+                                Solicitar préstamo
+                            </button>
+                            <p v-else>
+                                No puede solicitar más préstamos.
+                            </p>
+                        </div>
+                        <div class="card card-3 p-4 d-flex justify-content-center align-items-center"
+                            data-aos="zoom-out" v-else="">
+                            <div class="text-center">
+                                <h2 class="h-6">
+                                    Usted no posee préstamos
+                                </h2>
+                                <button type="button" class="btn btn-primary" @click="toLoans">
+                                    Solicitar préstamo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-xl-4 mt-3">
+
+                        <!-- CARD CREDIT-CARDS -->
+                        <div class="card card-3 d-flex flex-column justify-content-center align-items-center p-4"
+                            data-aos="zoom-out" v-if="cards.length > 0">
+                            <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                <h2 class="h-6 mb-0">
+                                    Tarjetas de crédito
+                                </h2>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Color</th>
+                                            <th class="text-center">Terminación</th>
+                                            <th class="text-center">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="card in credit" class="fila-tabla-dolar">
+                                            <td>
+                                                {{card.color}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{card.number.substring(15,19)}}
+                                            </td>
+                                            <td class="text-center"
+                                                :class="{'text-success' : card.enabled, 'text-danger' : !card.enabled}">
+                                                {{card.enabled ? "Activa" : "Inactiva"}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                <h2 class="h-6 mb-0">
+                                    Tarjetas de débito
+                                </h2>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Color</th>
+                                            <th class="text-center">Terminación</th>
+                                            <th class="text-center">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="card in debit" class="fila-tabla-dolar">
+                                            <td>
+                                                {{card.color}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{card.number.substring(15,19)}}
+                                            </td>
+                                            <td class="text-center"
+                                                :class="{'text-success' : card.enabled, 'text-danger' : !card.enabled}">
+                                                {{card.enabled ? "Activa" : "Inactiva"}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card card-3 d-flex justify-content-center align-items-center p-4"
+                            data-aos="zoom-out" v-else="">
+                            <div class="imagen-fondo-tarjeta">
+                                <div class="text-center card-tarjetascredeb">
+                                    <h2 class="h-6">
+                                        Usted no posee tarjetas
+                                    </h2>
+                                    <button type="button" class="btn btn-primary" @click="toCreateCards">
+                                        Solicite una Ya!
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-xl-4 mt-3">
+                        <!-- CARD INFO DOLAR -->
+                        <div class="card card-3 p-2 d-flex justify-content-center align-items-center"
+                            data-aos="zoom-out">
+                            <div class="mb-3">
+                                <h2 class="h-6 text-center">
+                                    Cotizaciones Dólar - Último día
+                                </h2>
+                            </div>
+                            <div class="w-75 d-flex justify-content-center align-items-center">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Divisa</th>
+                                            <th class="text-center">Compra</th>
+                                            <th class="text-center">Venta</th>
+                                            <th class="text-center">Variación</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="dolar in dataDolar" class="fila-tabla-dolar">
+                                            <td v-show="dolar.casa.venta != '0'">
+                                                {{dolar.casa.nombre != 'Dolar Contado con Liqui' ? dolar.casa.nombre : 'Dolar CCL'}}
+                                            </td>
+                                            <td class="text-center" v-show="dolar.casa.venta != '0'">
+                                                {{dolar.casa.compra}} </td>
+                                            <td class="text-center" v-show="dolar.casa.venta != '0'">
+                                                {{dolar.casa.venta}}</td>
+                                            <td :class="{'text-success': dolar.casa.variacion >= '0', 'text-danger': dolar.casa.variacion < '0'}"
+                                                class="text-center" v-show="dolar.casa.venta != '0'">
+                                                {{dolar.casa.variacion}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Solicitud de Tarjeta</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1"
+                                        :value="loadData.firstName" required readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Apellido:</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1"
+                                        :value="loadData.lastName" required readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email:</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" :value="loadData.emailClient" required readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="form-select" aria-label="Default select example"
+                                        v-model="accountType">
+                                        <option selected value="">Seleccione tipo</option>
+                                        <option v-show="ahorro.length < 2" value="AHORRO">caja de ahorro</option>
+                                        <option v-show="corriente.length < 2" value="CORRIENTE">Cuenta Corriente
+                                        </option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <p>No puede crear mas de 2 cuenta de cada tipo</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary"
+                                        @click="createAccount">Solicitar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="d-flex justify-content-between align-items-center w-100">
+        <div class="container-fluid">
+            <div class="row list-box">
+                <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center">
+                    <ul>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0">Sobre nosotros
+                        </li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0">Preguntas
+                            frequentes
+                        </li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0">Políticas de
+                            privacidad
+                        </li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0">Términos y
+                            condiciones
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center">
+                    <ul>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0"><img id="facebook" src="./assets/facebook.svg"
+                                alt="facebook logo">Facebook</li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0"><img id="twitter" src="./assets/twitter.svg" alt="twitter logo">Twitter
+                        </li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0"><img id="instagram" src="./assets/instagram.svg"
+                                alt="instagram logo">Instagram</li>
+                        <li data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0"><img id="youtube" src="./assets/youtube.svg" alt="youtube logo">Youtube
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-xs-12 d-flex flex-column justify-content-center align-items-center">
+                    <h2 class="siglas-footer p-2" data-aos="zoom-out">
+                        BVT
+                    </h2>
+                    <span>&#169 Copyright BVT - 2022</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./scripts/accounts.js"></script>
+</body>
+
+</html>
