@@ -196,13 +196,13 @@
                 <!-- Submit button -->
                 <div class="row">
                     <div class="col-md-4 d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn btn-primary btn-block mb-4" @click="toCards">Ir a
+                            tarjetas</button>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-center align-items-center">
                         <button type="button" class="btn btn-primary btn-block mb-4" v-if="!checkboxTyCCheck" disabled>Solicitar tarjeta</button>
                         <button type="button" class="btn btn-primary btn-block mb-4" v-else-if="checkboxTyCCheck"
                             @click="createCard">Solicitar tarjeta</button>
-                    </div>
-                    <div class="col-md-4 d-flex justify-content-center align-items-center">
-                        <button type="button" class="btn btn-primary btn-block mb-4" @click="toCards">Ir a
-                            tarjetas</button>
                     </div>
                     <div class="col-md-4 d-flex justify-content-center align-items-center">
                         <button type="button" class="btn btn-primary btn-block mb-4" @click="toHome">Ir a

@@ -81,8 +81,7 @@
                             <a class="nav-link active text-light" aria-current="page" href="./cards.html">Tarjetas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-light" aria-current="page"
-                                href="#">Transferencias</a>
+                            <a class="nav-link active text-light" aria-current="page" href="#">Transferencias</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active text-light" aria-current="page"
@@ -158,7 +157,8 @@
                     <select class="form-select" aria-label="Default select example" v-model="sourceAccount"
                         :disabled="transferType == ''" @change="reset2">
                         <option selected value="">Cuenta de origen</option>
-                        <option :value="account.name" v-for="account in accounts" v-show="account.enabled && account.balance > 0">{{account.name}} - Saldo: &#36
+                        <option :value="account.name" v-for="account in accounts"
+                            v-show="account.enabled && account.balance > 0">{{account.name}} - Saldo: &#36
                             {{account.balance}} - {{account.type}}
                         </option>
                     </select>
@@ -169,7 +169,8 @@
                     <select class="form-select" aria-label="Default select example" v-model="targetAccount"
                         :disabled="sourceAccount == ''" @change="reset3">
                         <option selected value="">Cuenta de destino</option>
-                        <option :value="account.name" v-for="account in accounts" v-show="account.name != sourceAccount && account.enabled">
+                        <option :value="account.name" v-for="account in accounts"
+                            v-show="account.name != sourceAccount && account.enabled">
                             {{account.name}} - Saldo: &#36 {{account.balance}} - {{account.type}}
                         </option>
                     </select>
@@ -198,22 +199,25 @@
                     <input class="form-check-input me-2" type="checkbox" id="form6Example8" @click="acceptTyC" />
                     <label class="form-check-label" for="form6Example8"> Acepto los términos y condiciones </label>
                 </div>
-                <!-- Submit button -->
+            </form>
+            <!-- Submit button -->
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4 d-flex justify-content-center align-items-center">
-                        <button type="button" class="btn btn-primary btn-block mb-4" :disabled="!checkboxChecked"
-                            @click.once="makeTransfer">Realizar Transferencia</button>
-                    </div>
+                    <div class="dropdown-divider"></div>
                     <div class="col-md-4 d-flex justify-content-center align-items-center">
                         <button type="button" class="btn btn-primary btn-block mb-4" @click="toCards">Ir a
                             tarjetas</button>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn btn-primary btn-block mb-4" :disabled="!checkboxChecked"
+                            @click.once="makeTransfer">Realizar Transferencia</button>
                     </div>
                     <div class="col-md-4 d-flex justify-content-center align-items-center">
                         <button type="button" class="btn btn-primary btn-block mb-4" @click="toHome">Ir a
                             Inicio</button>
                     </div>
                 </div>
-            </form>
+            </div>
         </main>
     </div>
 
