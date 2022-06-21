@@ -27,6 +27,10 @@ main{
     min-width: 1rem !important;
 }
 
+#register-link{
+    background: none !important;
+}
+
 
 /* ===============================MEDIA QUERIES=============================== */
 
