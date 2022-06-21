@@ -16,7 +16,8 @@ Vue.createApp({
                     loans: [],
                     type: '',
                     maxAmount: '',
-                    payments: [],
+                    paymentsSelected: [12,24,36,48,60,72],
+                    paymentsLoan: [],
                     loansRest:[],
                     idLoan:''
 
@@ -40,13 +41,6 @@ Vue.createApp({
                             .then(response => {
                                 this.loans = response.data
                                 console.log(this.loans);
-                            })
-                    }).then(response =>{
-                            axios.get('/rest/loans')
-                            .then(response =>{
-                                this.loansRest = response.data._embedded
-                                console.log(this.loansRest)
-
                             })
                     })
             },
@@ -194,6 +188,13 @@ Vue.createApp({
 
                 addLoans() {
 
+
+                        let newLoan = {
+                            name: this.type,
+                            maxAmount: this.maxAmount,
+                            payments: this.paymentsLoan
+                        }
+
                         Swal.fire({
                             title: '¿Desea agregar el préstamo?',
                             text: "Al confirmar, no podrá revertir los cambios",
@@ -204,11 +205,7 @@ Vue.createApp({
                             confirmButtonText: 'Agregar'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                axios.post('/api/loans/create', {
-                                    "name": `${this.type}`,
-                                    "maxAmount": `${this.maxAmount}`,
-                                    "payments": [`${this.payments}`]
-                                })
+                                axios.post('/api/loans/create', newLoan)
                                     .then(response => {
                                         Swal.fire(
                                             'Préstamo creado',
@@ -231,7 +228,7 @@ Vue.createApp({
                                     })
                             }
                         })
-                        console.log([this.payments])
+                        console.log(newLoan)
                 },
 
             },

@@ -156,55 +156,23 @@
                                         <input type="text" class="form-control" id="exampleInputPassword1"
                                             v-model="type" required>
                                     </div>
-                                    {{type}}
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Monto máximo:</label>
                                         <input type="number" class="form-control" id="exampleInputPassword2"
                                             v-model="maxAmount" required>
                                     </div>
-                                    {{maxAmount}}
-                                    <!-- <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Cuotas:</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1"
-                                            aria-describedby="emailHelp" v-model="payments" required>
-                                    </div> -->
                                     <div class="d-flex gap-5 mb-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value='12' id="12cuotas"
-                                                v-model="payments" name="hola">
-                                            <label class="form-check-label" for="12cuotas">
-                                                12 cuotas
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value='24'
-                                                v-model="payments" id="24cuotas" name="hola">
-                                            <label class="form-check-label" for="24cuotas">
-                                                24 cuotas
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value='36'
-                                                v-model="payments" id="36cuotas" name="hola">
-                                            <label class="form-check-label" for="36cuotas">
-                                                36 cuotas
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value='48'
-                                                v-model="payments" id="48cuotas" name="hola">
-                                            <label class="form-check-label" for="48cuotas">
-                                                48 cuotas
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value='60'
-                                                v-model="payments" id="60cuotas" name="hola">
-                                            <label class="form-check-label" for="60cuotas">
-                                                60 cuotas
+                                        <div class="form-check" v-for="payment in paymentsSelected">
+                                            <input class="form-check-input" type="checkbox" :value="payment" :id="payment"
+                                                v-model="paymentsLoan" name="hola">
+                                            <label class="form-check-label" :for="payment">
+                                                {{payment}} cuotas
                                             </label>
                                         </div>
                                     </div>
+                                    {{type}}
+                                    {{maxAmount}}
+                                    {{paymentsLoan}}
                                     <button type="button" class="btn btn-primary" @click="addLoans">Agregar
                                         Préstamo</button>
                                 </form>
@@ -229,7 +197,7 @@
                                                 {{loan.name}}
                                             </td>
                                             <td class="text-capitalize">
-                                                {{loan.maxAmount}}
+                                                &#36 {{loan.maxAmount}}
                                             </td>
                                             <td>
                                                 {{loan.payments.join(",")}}
